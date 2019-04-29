@@ -108,7 +108,7 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateProfileInput(req.body);
+    const { errors, isValid } = validateProfileInput(req.body); // Passing in the input
 
     // Chack Validation
     if (!isValid) {
@@ -183,7 +183,7 @@ router.post(
   "/experience",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateExperienceInput(req.body);
+    const { errors, isValid } = validateExperienceInput(req.body); // Passing in the input
 
     // Chack Validation
     if (!isValid) {
@@ -218,7 +218,7 @@ router.post(
   "/education",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateEducationInput(req.body);
+    const { errors, isValid } = validateEducationInput(req.body); // Passing in the input
 
     // Chack Validation
     if (!isValid) {
