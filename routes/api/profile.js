@@ -27,7 +27,7 @@ router.get(
   (req, res) => {
     const errors = {};
 
-    Profile.findOne({ user: req.user.id })
+    Profile.findOne({ user: req.user.id }) // Current user
       .populate("user", ["name", "avatar"])
       .then(profile => {
         if (!profile) {
@@ -144,11 +144,11 @@ router.post(
 
     // Create or Edit current user profile with unique handle
     Profile.findOne({ user: req.user.id }).then(profile => {
-      // If profile not exist, then create a new one, Otherwise just update
+      // If profile not exist, then create a new one, otherwise just update
 
       // Create new profile
       if (!profile) {
-        // Check if handle exists (handle should be unique for all profile)
+        // Check if handle exists (handle should be unique for all profiles)
         Profile.findOne({ handle: profileFields.handle }).then(profile => {
           if (profile) {
             errors.handle = "The handle already exists";
@@ -253,7 +253,7 @@ router.delete(
   "/experience/:exp_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id })
+    Profile.findOne({ user: req.user.id }) // Current user
       .then(profile => {
         // Get remove index
         const removeIndex = profile.experience
@@ -277,7 +277,7 @@ router.delete(
   "/education/:edu_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id })
+    Profile.findOne({ user: req.user.id }) // Current user
       .then(profile => {
         // Get remove index
         const removeIndex = profile.education
